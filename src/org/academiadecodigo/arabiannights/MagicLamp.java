@@ -12,8 +12,12 @@ public class MagicLamp {
 
     private int numberOfGenies;
     private int maxGenies;
-    Genie genie;
     private int numberOfDemons;
+
+    //constructor
+    public MagicLamp(int maxGenies) {
+        this.maxGenies = maxGenies;
+    }
 
     public int getNumberOfGenies() {
         return numberOfGenies;
@@ -23,49 +27,39 @@ public class MagicLamp {
         return maxGenies;
     }
 
-
-    //constructor
-    public MagicLamp(int maxGenies) {
-        this.maxGenies = maxGenies;
-    }
-
     //create new genie
     public Genie rub(int wishes) {
+
+        Genie genie;
         if (numberOfGenies < maxGenies) {
             if (numberOfGenies % 2 == 0) {
-            	numberOfGenies++;
-                return new FriendlyGenie(wishes);
+                genie = new FriendlyGenie(wishes);
             } else {
-            	numberOfGenies++;
-                return new GrumpyGenie(wishes);
+                genie = new GrumpyGenie(wishes);
             }
+            numberOfGenies++;
+        } else {
+            numberOfDemons++;
+            genie = new RecyclableDemon(wishes);
         }
-        numberOfDemons++;
-        return new RecyclableDemon();
-    }
-
-    //feedDemon
-    public Genie feedDemon(RecyclableDemon demon) {
-        demon.setNoFeedDemon(false);
-        numberOfGenies = 0;
-        
 
         return genie;
     }
 
-    //compare capacity, number of remaning geniuses and demons
-    public boolean compareLamps(MagicLamp lamp2){
-        System.out.println("Capacity of lamp 1: "+ this.maxGenies + " Capacity of lamp 2: "+lamp2.maxGenies);
-        System.out.println("Remaining geniuses of lamp 1: "+ this.numberOfGenies + "Remaining geniuses of lamp 2: " +lamp2.numberOfGenies);
-        System.out.println("Remaning demons of lamp 1: "+this.numberOfDemons + "Remaning demons of lamp 2: " + lamp2.numberOfDemons);
-       
-        
-        
-        return (this.maxGenies == lamp2.maxGenies && this.numberOfGenies == lamp2.numberOfGenies && this.numberOfDemons == lamp2.numberOfDemons);
-    	
-        }
+    //feedDemon
+    public void feedDemon(RecyclableDemon demon) {
+        demon.recycle(false);
+        numberOfGenies = 0;
+    }
 
-	
+    //compare capacity, number of remaning geniuses and demons
+    public boolean equals(MagicLamp lamp) {
+        return (this.maxGenies == lamp.maxGenies &&
+                this.numberOfGenies == lamp.numberOfGenies &&
+                this.numberOfDemons == lamp.numberOfDemons);
+    }
+
+
 }
 
 	

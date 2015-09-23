@@ -8,16 +8,15 @@ public class FriendlyGenie extends Genie {
 
     //constructor
     public FriendlyGenie(int maxWishes){
-        this.maxWishes = maxWishes;
-        this.numberOfWishes = 0;
+        super(maxWishes);
     }
 
 
     @Override
     public void grantWish() {
-        if(numberOfWishes<= maxWishes){
-            numberOfWishes++;
-            System.out.println("This wish was granted");
+        System.out.print("Friendly Genie: ");
+        if(getWishedGranted()<= getMaxWishes()){
+            super.grantWish();
 
         } else {
             System.out.println("Sorry, you have no wishes");

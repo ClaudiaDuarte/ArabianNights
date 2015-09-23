@@ -5,33 +5,23 @@ package org.academiadecodigo.arabiannights.genie;
  */
 public class RecyclableDemon extends Genie {
 
-
     private boolean noFeedDemon = true;
 
-
-
-    public void setNoFeedDemon(boolean noFeedDemon) {
-        this.noFeedDemon = noFeedDemon;
+    public RecyclableDemon(int maxWishes) {
+        super(maxWishes);
     }
-
-
 
     //getter noFeedDemon
 
-
-
-
-
-    public RecyclableDemon() {
-        this.numberOfWishes = 0;
+    public void recycle(boolean noFeedDemon) {
+        this.noFeedDemon = noFeedDemon;
     }
-
 
     @Override
     public void grantWish() {
-        if(noFeedDemon){
-            numberOfWishes++;
-            System.out.println("This wish was granted");
+        System.out.print("Recyclable Demon:");
+        if (noFeedDemon) {
+            super.grantWish();
 
         } else {
             System.out.println("Sorry, you have no wishes");
@@ -39,10 +29,10 @@ public class RecyclableDemon extends Genie {
 
 
     }
-    
+
     @Override
-    public String toString(){
-    	return "Recyclable Demon -> Wishes Used: " + numberOfWishes;
+    public String toString() {
+        return "Recyclable Demon -> Wishes Used: " + getWishedGranted();
     }
 
 }

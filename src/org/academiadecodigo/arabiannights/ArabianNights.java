@@ -48,7 +48,13 @@ public class ArabianNights {
         extraGenie.grantWish();
         System.out.println(extraGenie);
 
-        
+        MagicLamp newLamp = new MagicLamp(4);
+
+        if (lamp.equals(newLamp)) {
+            System.out.println("The lamps are equal");
+        } else {
+            System.out.println("The lamps are NOT equal");
+        }
 
 
 
